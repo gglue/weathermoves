@@ -6,6 +6,8 @@ declare global {
     interface WeatherLocation{
         "lat": number,
         "lon": number
+        "name": string,
+        "country": string
     }
 
     interface SpecificWeather{
@@ -21,15 +23,17 @@ declare global {
     interface CityWeather{
         "current": Current,
         "daily": Daily[],
-        "minutely": Minutely
+        "minutely": Minutely,
+        "timezone_offset": number
     }
 
     interface Current{
-        "temp": number
+        "temp": number,
+        "dt": number,
         "feels_like": number,
         "humidity": number,
         "wind_speed" : number,
-        "weather": Weather
+        "weather": Weather[]
     }
 
     interface Weather{
@@ -45,7 +49,7 @@ declare global {
 
     interface Daily{
         "temp" : Temp,
-        "weather" : Weather,
+        "weather" : Weather[],
         "rain": number
     }
 

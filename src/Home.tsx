@@ -27,7 +27,8 @@ function Home(){
         return (
             locationResults
                 ? locationResults.map(locationResult => (
-                    <Grid item xs = {12}><LocationRow lat={locationResult.lat} lon={locationResult.lon}/> </Grid>
+                    <Grid item xs = {12}><LocationRow lat={locationResult.lat} lon={locationResult.lon}
+                                                      name={locationResult.name} country={locationResult.country}/> </Grid>
                 ))
                 : null
         )
