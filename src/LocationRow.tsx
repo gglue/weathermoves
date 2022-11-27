@@ -8,7 +8,7 @@ function LocationRow(props : WeatherLocation){
     const [loading, setLoading] = useState<boolean>(true);
     const cityName = props.name;
     const country = props.country;
-    let date;
+    const time = localTime(locatInfo?.current.dt as number, locatInfo?.timezone_offset as number);
     // At startup
     useEffect(() => {
         axios.get<CityWeather>(`https://api.openweathermap.org/data/3.0/onecall?lat=${props.lat}&lon=${props.lon}&units=metric&exclude=hourly,alerts&appid=${API_KEY}`)
@@ -21,7 +21,7 @@ function LocationRow(props : WeatherLocation){
                 });
                 setLoading(false);
             })
-    }, []);
+    }, [props.name]);
 
     function localTime(UTCtime : number, offset : number){
         const sum = UTCtime + offset;
@@ -33,12 +33,12 @@ function LocationRow(props : WeatherLocation){
         loading ?
                 null
             :
-            <Card variant="outlined" sx={{ minWidth: 374}}>
+            <Card variant="outlined" sx={{ minWidth: 374}} onClick={() => {props.setPopup({locatInfo, cityName, country, time}); props.setTrigger(true)}} >
                 <Grid container direction="row" alignItems="center" sx={{ pl : 2}}>
                     <Grid item xs>
                         <h1>{cityName}, {country}</h1>
                         <h1>&nbsp;</h1>
-                        <h1>{localTime(locatInfo?.current.dt as number, locatInfo?.timezone_offset as number)}</h1>
+                        <h1>{time}</h1>
                         <h1>{locatInfo?.current.weather[0].description}</h1>
                     </Grid>
                     <Grid item xs>

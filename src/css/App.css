@@ -1,5 +1,5 @@
 #root {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   left: 0;
@@ -16,4 +16,13 @@
   background: white;
   border-radius: 3px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .9);
+}
+
+#root .popup {
+  width: 376px;
+  height: 540px;
+  z-index: 101;
+  position : relative;
+  background-repeat: no-repeat;
+  background-size: 100% 70%;
 }

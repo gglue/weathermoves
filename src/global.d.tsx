@@ -8,16 +8,22 @@ declare global {
         "lon": number
         "name": string,
         "country": string
+        "popupInfo": any,
+        "setPopup": any,
+        "trigger": any,
+        "setTrigger": any
     }
 
     interface SpecificWeather{
+        "weatherLocation": WeatherLocation
         "weather": Object[],
         "temp": number,
         "min": number,
         "max": number,
         "wind": number,
         "precipitation": number,
-        "humidity": number
+        "humidity": number,
+        "clouds": number,
     }
 
     interface CityWeather{
@@ -30,7 +36,7 @@ declare global {
     interface Current{
         "temp": number,
         "dt": number,
-        "feels_like": number,
+        "clouds": number,
         "humidity": number,
         "wind_speed" : number,
         "weather": Weather[]
