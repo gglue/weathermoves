@@ -10,7 +10,7 @@ function Home(){
     const [search, setSearch] = useState<string|undefined>();
     const [loading, setLoading] = useState<boolean>(true);
     const API_KEY = process.env.REACT_APP_API_KEY;
-    const TOTAL_QUERY = process.env.REACT_APP_TOTAL_QUERY;
+    const TOTAL_QUERY = 1;
     const navigate = useNavigate();
 
     function handleSubmit(event: React.FormEvent) {
@@ -35,15 +35,17 @@ function Home(){
     }
 
     return(
-        <Grid container justifyContent="center" alignItems="center" direction="row" className='root'>
+        <Grid container justifyContent="center" alignItems="center" direction="row" className='searchBar'>
             <form onSubmit={handleSubmit} >
                 <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
                     <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5}} />
                     <TextField onChange={(newValue: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setSearch(newValue.target.value)}
-                               sx={{width: 290}} id="input-with-sx" label="Please enter a city name or postal code" variant="standard" />
+                               sx={{width: 235}} id="input-with-sx" label="Enter a city or zip code, country." variant="standard" />
                 </Box>
             </form>
-            {loading ? null : printList()}
+            <Grid container justifyContent="center" alignItems="center" direction="row" className='searchResults' sx={{overflowY: 'scroll', overflowX: "hidden", maxHeight: 490}}>
+                {loading ? null : printList()}
+            </Grid>
         </Grid>
     );
 }

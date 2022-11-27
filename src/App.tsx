@@ -1,7 +1,9 @@
 import React from 'react';
 import { ReactComponent as Logo} from "./logo.svg";
 import {Routes, Route, useLocation} from "react-router-dom";
-import Home from "./Home"
+import Home from "./Home";
+import Footer from "./Footer";
+
 function App() {
     const location = useLocation();
     return (
@@ -12,6 +14,7 @@ function App() {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/weatherLocation" element={<Home/>}/>
                 </Routes>
+                <Footer/>
             </div>
         </div>
       );

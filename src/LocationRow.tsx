@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Card} from "@mui/material";
+import {Card, Grid, Typography} from "@mui/material";
 
 function LocationRow(props : WeatherLocation){
     const [locatInfo, setInfo] = useState<CityWeather>();
@@ -33,13 +33,22 @@ function LocationRow(props : WeatherLocation){
         loading ?
                 null
             :
-            <Card variant="outlined" sx={{ minWidth: 374, pb: 1, pt: 1}}>
-                <h1>{cityName}, {country}</h1>
-                <h1>{locatInfo?.current.weather[0].description}</h1>
-                <h1>{Math.round(locatInfo?.current.temp as number)}°C</h1>
-                <h1>{locatInfo?.current.weather[0].icon}</h1>
-                <h1>{localTime(locatInfo?.current.dt as number, locatInfo?.timezone_offset as number)}</h1>
-                <h1>H:{Math.round(locatInfo?.daily[0].temp.max as number)}°C L:{Math.round(locatInfo?.daily[0].temp.min as number)}°C</h1>
+            <Card variant="outlined" sx={{ minWidth: 374}}>
+                <Grid container direction="row" alignItems="center" sx={{ pl : 2}}>
+                    <Grid item xs>
+                        <h1>{cityName}, {country}</h1>
+                        <h1>&nbsp;</h1>
+                        <h1>{localTime(locatInfo?.current.dt as number, locatInfo?.timezone_offset as number)}</h1>
+                        <h1>{locatInfo?.current.weather[0].description}</h1>
+                    </Grid>
+                    <Grid item xs>
+                        <img style={{float: 'right'}} src={`${process.env.PUBLIC_URL}/images/${locatInfo?.current.weather[0].icon}.png`}/>
+                    </Grid>
+                    <Grid item xs>
+                        <Typography variant="h5" align="center">{Math.round(locatInfo?.current.temp as number)}°C</Typography>
+                        <Typography variant="body2" textAlign="center">H:{Math.round(locatInfo?.daily[0].temp.max as number)}°C L:{Math.round(locatInfo?.daily[0].temp.min as number)}°C</Typography>
+                    </Grid>
+                </Grid>
             </Card>
     )
 }
