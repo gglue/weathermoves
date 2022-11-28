@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
     This class is the pop-up screen that displays more detailed information
     about the weather of a city.
 */
-function Weather(props: any) {
+function Weather(props: { popupInfo : {locatInfo : CityWeather, cityName : string, country : string, time : number}, trigger : boolean, setTrigger : any }) {
 
     // This state sets the font color depending on the background image
     const [fontColor, setFont] = useState<string>('black');
@@ -86,7 +86,7 @@ function Weather(props: any) {
         else{
             let stored = JSON.parse(localStorage.fav);
             // If already in favourites, do not add it
-            if(stored.some((location: { lat: any; lon: any; }) => location.lat === favouritePlace.lat && location.lon === favouritePlace.lon)){
+            if(stored.some((location: { lat: number; lon: number; }) => location.lat === favouritePlace.lat && location.lon === favouritePlace.lon)){
                 window.alert("Already in your favourites!");
             }
             else{

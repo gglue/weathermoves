@@ -32,6 +32,7 @@ declare global {
         "clouds": number,
         "humidity": number,
         "wind_speed" : number,
+        "rain" : any,
         "weather": Weather[]
     }
 

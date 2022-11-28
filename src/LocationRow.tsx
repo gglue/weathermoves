@@ -43,7 +43,7 @@ function LocationRow(props : WeatherLocation){
                 // Begin displaying the information in the row when ready
                 setLoading(false);
             })
-    }, [props.lat, props.lon]);
+    }, [props.lat, props.lon, API_KEY]);
 
     // This helper function takes the current UTC time and the offset by timezone to get the time at that city
     function localTime(UTCtime : number, offset : number){

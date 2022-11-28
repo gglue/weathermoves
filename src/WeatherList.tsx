@@ -70,6 +70,7 @@ function WeatherList(props : { search : boolean, darkMode : boolean}){
             setLoading(false);
         }).catch(res =>{
             window.alert("No results found!");
+            console.log(res);
         })
     }
 
@@ -102,7 +103,7 @@ function WeatherList(props : { search : boolean, darkMode : boolean}){
 
     return(
         <Grid container justifyContent="center" alignItems="center" direction="row" className='searchBar'>
-            {trigger ? <Weather trigger={trigger} setTrigger={setTrigger} popupInfo={popupInfo} setPopup={setPopup}> </Weather> :
+            {trigger ? <Weather trigger={trigger} setTrigger={setTrigger} popupInfo={popupInfo}/> :
                 <Grid container justifyContent="center" alignItems="center" direction="row" className='searchBar'>
                     <form onSubmit={handleSubmit} >
                         {props.search ?
