@@ -29,6 +29,8 @@ declare global {
     }
 
     interface CityWeather{
+        "lat" : number,
+        "lon" : number,
         "current": Current,
         "daily": Daily[],
         "minutely": Minutely,

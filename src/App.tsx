@@ -16,8 +16,8 @@ function App() {
             <div className = "container-logo">
                 <header><Logo/></header>
                 <Routes>
-                    <Route path="/" element={<WeatherList search={true} darkMode={darkMode}/>}/>
-                    <Route path="/favourites" element={<WeatherList search={false} darkMode={darkMode}/>}/>
+                    <Route path="/" element={<WeatherList key={'list'} search={true} darkMode={darkMode}/>}/>
+                    <Route path="/favourites" element={<WeatherList key={'fav'} search={false} darkMode={darkMode}/>}/>
                     <Route path="/settings" element={<Settings setMode={setMode} darkMode={darkMode}/>}/>
                 </Routes>
                 <footer><Footer darkMode={darkMode}/></footer>

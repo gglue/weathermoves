@@ -15,6 +15,8 @@ function LocationRow(props : WeatherLocation){
         axios.get<CityWeather>(`https://api.openweathermap.org/data/3.0/onecall?lat=${props.lat}&lon=${props.lon}&units=metric&exclude=hourly,alerts&appid=${API_KEY}`)
             .then(res => {
                 setInfo({
+                    lat: res.data.lat,
+                    lon: res.data.lon,
                     current: res.data.current,
                     daily: res.data.daily,
                     minutely: res.data.minutely,

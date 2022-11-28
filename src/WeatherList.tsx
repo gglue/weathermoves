@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Grid, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import LocationRow from "./LocationRow";
 import Weather from "./Weather";
+import {useLocation, useNavigate} from "react-router-dom";
 
 function WeatherList(props : { search : boolean, darkMode : boolean}){
     const [locationResults, setLocations] = useState<WeatherLocation[]|WeatherLocation>();
@@ -14,6 +15,26 @@ function WeatherList(props : { search : boolean, darkMode : boolean}){
 
     const API_KEY = process.env.REACT_APP_API_KEY;
     const TOTAL_QUERY = Number(localStorage.getItem('QueryNumber')) || 5;
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    /*
+    if (props.search == false){
+        navigate(0);
+    }
+    */
+
+    useEffect(() => {
+        if (props.search == false){
+            if(localStorage.fav){
+                let stored = JSON.parse(localStorage.fav);
+                setLocations(stored);
+                setLoading(false);
+            }
+        }
+
+    }, [location]);
 
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
