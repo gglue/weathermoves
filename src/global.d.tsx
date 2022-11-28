@@ -11,8 +11,9 @@ declare global {
         "popupInfo": any,
         "setPopup": any,
         "trigger": any,
-        "setTrigger": any
-        "zip"?: any
+        "setTrigger": any,
+        "zip"?: any,
+        "darkMode"?: boolean
     }
 
     interface SpecificWeather{

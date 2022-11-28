@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import {Box, Grid, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
 import LocationRow from "./LocationRow";
 import Weather from "./Weather";
 
-function WeatherList(props : { search : boolean }){
+function WeatherList(props : { search : boolean, darkMode : boolean}){
     const [locationResults, setLocations] = useState<WeatherLocation[]|WeatherLocation>();
     const [search, setSearch] = useState<string|undefined>();
     const [loading, setLoading] = useState<boolean>(true);
@@ -14,8 +13,7 @@ function WeatherList(props : { search : boolean }){
     const [popupInfo, setPopup] = useState<any>();
 
     const API_KEY = process.env.REACT_APP_API_KEY;
-    const TOTAL_QUERY = 5;
-    const navigate = useNavigate();
+    const TOTAL_QUERY = Number(localStorage.getItem('QueryNumber')) || 5;
 
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
@@ -40,7 +38,7 @@ function WeatherList(props : { search : boolean }){
                         ? locationResults.map(locationResult => (
                             <Grid item xs={12}><LocationRow lat={locationResult.lat} lon={locationResult.lon}
                                                             name={locationResult.name} country={locationResult.country}
-                                                            popupInfo={popupInfo} setPopup={setPopup}
+                                                            popupInfo={popupInfo} setPopup={setPopup} darkMode={props.darkMode}
                                                             setTrigger={setTrigger} trigger={trigger}/> </Grid>
                         ))
                         : null
@@ -49,7 +47,7 @@ function WeatherList(props : { search : boolean }){
                 return (
                     <Grid item xs={12}><LocationRow lat={locationResults.lat} lon={locationResults.lon}
                                                     name={locationResults.name} country={locationResults.country}
-                                                    popupInfo={popupInfo} setPopup={setPopup}
+                                                    popupInfo={popupInfo} setPopup={setPopup} darkMode={props.darkMode}
                                                     setTrigger={setTrigger} trigger={trigger}/> </Grid>
                 )
             }

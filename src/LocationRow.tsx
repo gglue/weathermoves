@@ -5,6 +5,7 @@ import {Card, Grid, Typography} from "@mui/material";
 function LocationRow(props : WeatherLocation){
     const [locatInfo, setInfo] = useState<CityWeather>();
     const API_KEY = process.env.REACT_APP_API_KEY;
+    const DARK_MODE = props.darkMode;
     const [loading, setLoading] = useState<boolean>(true);
     const cityName = props.name;
     const country = props.country;
@@ -33,7 +34,7 @@ function LocationRow(props : WeatherLocation){
         loading ?
                 null
             :
-            <Card variant="outlined" onClick={() => {props.setPopup({locatInfo, cityName, country, time}); props.setTrigger(true)}} >
+            <Card variant="outlined" sx={{color: DARK_MODE ? 'white': 'black', backgroundColor: DARK_MODE ? 'grey' : 'white'}} onClick={() => {props.setPopup({locatInfo, cityName, country, time}); props.setTrigger(true)}} >
                 <Grid container direction="row" alignItems="center" sx={{ pl : 2}}>
                     <Grid item xs>
                         <h1>{cityName}, {country}</h1>
