@@ -42,7 +42,7 @@ function Weather(props: any) {
     // This state sets the cloudiness level
     const [cloudiness, setCloud] = useState<number>(0);
 
-    // Component refreshs when new information is loaded from the prop
+    // Component refreshes when new information is loaded from the prop
     useEffect(() => {
         // Run only if pop up information is given
         if (props.popupInfo) {
@@ -62,7 +62,7 @@ function Weather(props: any) {
             setHigh(props.popupInfo.locatInfo.daily[0].temp.max);
             setLow(props.popupInfo.locatInfo.daily[0].temp.min);
             setWind(props.popupInfo.locatInfo.current.wind_speed);
-            setPrec(props.popupInfo.locatInfo.minutely.precipitation);
+            if (props.popupInfo.locatInfo.current.rain) setPrec(props.popupInfo.locatInfo.current.rain['1h'] || 0);
             setHumid(props.popupInfo.locatInfo.current.humidity);
             setCloud(props.popupInfo.locatInfo.current.clouds);
         }
@@ -114,7 +114,7 @@ function Weather(props: any) {
 
                     <Grid item xs={7}>
                         <Typography align="center" variant="subtitle1">Wind: {windSpeed} m/s</Typography>
-                        <Typography align="center" variant="subtitle1">Precipitation: {precipitation}mm</Typography>
+                        <Typography align="center" variant="subtitle1">Precipitation: {precipitation} mm/h</Typography>
                         <Typography align="center" variant="subtitle1">Humidity: {humidity}%</Typography>
                         <Typography align="center" variant="subtitle1">Cloudiness: {cloudiness}%</Typography>
                         <Button onClick={() => {favourite()}} variant="contained">Add to favourites</Button>

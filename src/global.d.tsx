@@ -23,7 +23,6 @@ declare global {
         "lon" : number,
         "current": Current,
         "daily": Daily[],
-        "minutely": Minutely,
         "timezone_offset": number
     }
 
@@ -43,9 +42,6 @@ declare global {
         "icon": string
     }
 
-    interface Minutely{
-        "precipitation" : number
-    }
 
     interface Daily{
         "temp" : Temp,

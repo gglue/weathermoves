@@ -38,13 +38,12 @@ function LocationRow(props : WeatherLocation){
                     lon: res.data.lon,
                     current: res.data.current,
                     daily: res.data.daily,
-                    minutely: res.data.minutely,
                     timezone_offset: res.data.timezone_offset
                 });
                 // Begin displaying the information in the row when ready
                 setLoading(false);
             })
-    }, [props.name]);
+    }, [props.lat, props.lon]);
 
     // This helper function takes the current UTC time and the offset by timezone to get the time at that city
     function localTime(UTCtime : number, offset : number){
