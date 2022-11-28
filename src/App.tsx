@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-// @ts-ignore
-import { ReactComponent as Logo} from "./logo.svg";
+import {ReactComponent as Logo} from './logo.svg';
 import {Routes, Route} from "react-router-dom";
 import WeatherList from "./WeatherList";
 import Settings from "./Settings";

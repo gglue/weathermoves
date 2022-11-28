@@ -87,7 +87,7 @@ function Weather(props: any) {
             let stored = JSON.parse(localStorage.fav);
             // If already in favourites, do not add it
             if(stored.some((location: { lat: any; lon: any; }) => location.lat === favouritePlace.lat && location.lon === favouritePlace.lon)){
-                console.log("Already in your favourites!");
+                window.alert("Already in your favourites!");
             }
             else{
                 stored.push(favouritePlace);

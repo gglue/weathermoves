@@ -65,8 +65,11 @@ function WeatherList(props : { search : boolean, darkMode : boolean}){
 
         // Send Get request and start creating a list of LocationRows
         axios.get<WeatherLocation[]>(geoUri).then(res => {
+            if(res.data.length === 0) window.alert("No results found!");
             setLocations(res.data);
             setLoading(false);
+        }).catch(res =>{
+            window.alert("No results found!");
         })
     }
 
@@ -107,7 +110,7 @@ function WeatherList(props : { search : boolean, darkMode : boolean}){
                                 <SearchIcon sx={{color: 'action.active', mr: 1, my: 0.5}}/>
                                 <TextField
                                     onChange={(newValue: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setSearch(newValue.target.value)}
-                                    sx={{width: 235}} id="input-with-sx" label="Enter a city or zip code, country."
+                                    sx={{width: window.innerWidth - 50}} id="input-with-sx" label="Enter a city or zip, country code."
                                     variant="standard"/>
                             </Box>
                             :
@@ -115,7 +118,7 @@ function WeatherList(props : { search : boolean, darkMode : boolean}){
                         }
                     </form>
                     <Grid container justifyContent="center" alignItems="center" direction="row" className='searchResults' sx={{overflowY: 'auto', overflowX: "hidden", maxHeight: window.innerHeight-177}}>
-                        {loading ? null : printList()}
+                        {loading ? (props.search ? null : <h1 style={{paddingTop: 50}}>No favourites yet!</h1>) : printList()}
                     </Grid>
                 </Grid>}
         </Grid>
