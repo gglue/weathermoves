@@ -7,6 +7,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 
+/*
+    The root of the application used to run React.
+ */
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

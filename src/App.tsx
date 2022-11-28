@@ -6,9 +6,15 @@ import WeatherList from "./WeatherList";
 import Settings from "./Settings";
 import Footer from "./Footer";
 
+/*
+    This class holds the main container and the routes for redirecting
+*/
 function App() {
+
+    // State and variable used to toggle dark mode theme on/off
     const [darkMode, setMode] = useState<boolean>(localStorage.darkMode || false);
     const DARK_MODE = darkMode;
+
     return (
         <div className = "container" style={{width: window.innerWidth, height: window.innerHeight, color: DARK_MODE ? 'white': 'black', backgroundColor: DARK_MODE ? 'grey' : 'white'}}>
             <div className = "container-logo">

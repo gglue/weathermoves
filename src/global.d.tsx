@@ -1,6 +1,8 @@
 export {};
 
-
+/*
+    This file is used to store interfaces globally, so I don't have to rewrite them in each file.
+ */
 declare global {
 
     interface WeatherLocation{
@@ -14,18 +16,6 @@ declare global {
         "setTrigger": any,
         "zip"?: any,
         "darkMode"?: boolean
-    }
-
-    interface SpecificWeather{
-        "weatherLocation": WeatherLocation
-        "weather": Object[],
-        "temp": number,
-        "min": number,
-        "max": number,
-        "wind": number,
-        "precipitation": number,
-        "humidity": number,
-        "clouds": number,
     }
 
     interface CityWeather{

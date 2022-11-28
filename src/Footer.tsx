@@ -5,6 +5,9 @@ import GradeIcon from '@mui/icons-material/Grade';
 import SettingsIcon from '@mui/icons-material/Settings';
 import React from "react";
 
+/*
+    This class holds the navigator bar at the bottom of the app.
+*/
 function Footer(props:{darkMode : boolean}){
     // Variables used to help redirect
     const location = useLocation();
