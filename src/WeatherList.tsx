@@ -7,7 +7,7 @@ import LocationRow from "./LocationRow";
 import Weather from "./Weather";
 
 function WeatherList(props : { search : boolean }){
-    const [locationResults, setLocations] = useState<WeatherLocation[]>();
+    const [locationResults, setLocations] = useState<WeatherLocation[]|WeatherLocation>();
     const [search, setSearch] = useState<string|undefined>();
     const [loading, setLoading] = useState<boolean>(true);
     const [trigger, setTrigger] = useState<boolean>(false);
@@ -16,10 +16,16 @@ function WeatherList(props : { search : boolean }){
     const API_KEY = process.env.REACT_APP_API_KEY;
     const TOTAL_QUERY = 5;
     const navigate = useNavigate();
+
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
-        let geoUri = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=${TOTAL_QUERY}&appid=${API_KEY}`;
-
+        let geoUri;
+        if (search?.includes(',')){
+            geoUri = `https://api.openweathermap.org/geo/1.0/zip?zip=${search}&limit=${TOTAL_QUERY}&appid=${API_KEY}`;
+        }
+        else {
+            geoUri = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=${TOTAL_QUERY}&appid=${API_KEY}`;
+        }
         axios.get<WeatherLocation[]>(geoUri).then(res => {
             setLocations(res.data);
             setLoading(false);
@@ -27,16 +33,27 @@ function WeatherList(props : { search : boolean }){
     }
 
     function printList(){
-        return (
-            locationResults
-                ? locationResults.map(locationResult => (
-                    <Grid item xs = {12}><LocationRow lat={locationResult.lat} lon={locationResult.lon}
-                                                      name={locationResult.name} country={locationResult.country}
-                                                      popupInfo={popupInfo} setPopup={setPopup}
-                                                      setTrigger={setTrigger} trigger={trigger}/> </Grid>
-                ))
-                : null
-        )
+        if(locationResults) {
+            if (Array.isArray(locationResults)) {
+                return (
+                    locationResults
+                        ? locationResults.map(locationResult => (
+                            <Grid item xs={12}><LocationRow lat={locationResult.lat} lon={locationResult.lon}
+                                                            name={locationResult.name} country={locationResult.country}
+                                                            popupInfo={popupInfo} setPopup={setPopup}
+                                                            setTrigger={setTrigger} trigger={trigger}/> </Grid>
+                        ))
+                        : null
+                )
+            } else {
+                return (
+                    <Grid item xs={12}><LocationRow lat={locationResults.lat} lon={locationResults.lon}
+                                                    name={locationResults.name} country={locationResults.country}
+                                                    popupInfo={popupInfo} setPopup={setPopup}
+                                                    setTrigger={setTrigger} trigger={trigger}/> </Grid>
+                )
+            }
+        }
     }
 
     return(

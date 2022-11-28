@@ -12,6 +12,7 @@ declare global {
         "setPopup": any,
         "trigger": any,
         "setTrigger": any
+        "zip"?: any
     }
 
     interface SpecificWeather{
