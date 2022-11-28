@@ -73,7 +73,7 @@ function WeatherList(props : { search : boolean }){
                             null
                         }
                     </form>
-                    <Grid container justifyContent="center" alignItems="center" direction="row" className='searchResults' sx={{overflowY: 'auto', overflowX: "hidden", maxHeight: 490}}>
+                    <Grid container justifyContent="center" alignItems="center" direction="row" className='searchResults' sx={{overflowY: 'auto', overflowX: "hidden", maxHeight: window.innerHeight-177}}>
                         {loading ? null : printList()}
                     </Grid>
                 </Grid>}

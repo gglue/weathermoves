@@ -16,7 +16,7 @@ function Footer(){
         if (!(location.pathname === newValue)) navigate(newValue);
     }
     return(
-        <BottomNavigation sx={{ position: 'absolute', right: 65, bottom: 0}} value={location.pathname} showLabels onChange={handleChange}>
+        <BottomNavigation sx={{ position: 'absolute', right: 65, left : 65, bottom: 0}} value={location.pathname} showLabels onChange={handleChange}>
             <BottomNavigationAction
                 label="Search"
                 value="/"

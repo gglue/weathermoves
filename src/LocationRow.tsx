@@ -33,7 +33,7 @@ function LocationRow(props : WeatherLocation){
         loading ?
                 null
             :
-            <Card variant="outlined" sx={{ minWidth: 374}} onClick={() => {props.setPopup({locatInfo, cityName, country, time}); props.setTrigger(true)}} >
+            <Card variant="outlined" onClick={() => {props.setPopup({locatInfo, cityName, country, time}); props.setTrigger(true)}} >
                 <Grid container direction="row" alignItems="center" sx={{ pl : 2}}>
                     <Grid item xs>
                         <h1>{cityName}, {country}</h1>
