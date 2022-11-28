@@ -18,9 +18,9 @@
 }
 
 #root .popup {
-  width: 376px;
-  height: 540px;
+  width: 100%;
+  height: 100%;
   z-index: 101;
   position : relative;
-  background-repeat: no-repeat;
+  background-size: cover;
 }

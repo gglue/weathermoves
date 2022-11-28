@@ -64,7 +64,8 @@ function Weather(props: any) {
     }
     return(
         props.trigger ?
-                <Grid container sx={{color: fontColor}} alignItems="center" direction="column" className='popup' style={{backgroundImage:`url(${process.env.PUBLIC_URL}/images/${background}.svg)`}}>
+                <Grid container sx={{color: fontColor}} alignItems="center" direction="column" className='popup' style={{backgroundImage:`url(${process.env.PUBLIC_URL}/images/${background}.svg)`,
+                    width: window.innerWidth, height: window.innerHeight-127}}>
 
                     <Grid item xs={1}>
                         <ArrowBackIcon onClick={() => {props.setTrigger(false)}} fontSize="large"/>

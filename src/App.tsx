@@ -7,8 +7,6 @@ import Settings from "./Settings";
 import Footer from "./Footer";
 
 function App() {
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
     const [darkMode, setMode] = useState<boolean>(localStorage.darkMode || false);
     const DARK_MODE = darkMode;
     return (

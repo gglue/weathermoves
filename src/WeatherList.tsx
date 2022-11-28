@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import LocationRow from "./LocationRow";
 import Weather from "./Weather";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 function WeatherList(props : { search : boolean, darkMode : boolean}){
     const [locationResults, setLocations] = useState<WeatherLocation[]|WeatherLocation>();
@@ -16,7 +16,6 @@ function WeatherList(props : { search : boolean, darkMode : boolean}){
     const API_KEY = process.env.REACT_APP_API_KEY;
     const TOTAL_QUERY = Number(localStorage.getItem('QueryNumber')) || 5;
 
-    const navigate = useNavigate();
     const location = useLocation();
 
     /*
@@ -26,7 +25,7 @@ function WeatherList(props : { search : boolean, darkMode : boolean}){
     */
 
     useEffect(() => {
-        if (props.search == false){
+        if (props.search === false){
             if(localStorage.fav){
                 let stored = JSON.parse(localStorage.fav);
                 setLocations(stored);

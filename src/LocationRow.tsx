@@ -45,7 +45,7 @@ function LocationRow(props : WeatherLocation){
                         <h1>{locatInfo?.current.weather[0].description}</h1>
                     </Grid>
                     <Grid item xs>
-                        <img style={{float: 'right'}} src={`${process.env.PUBLIC_URL}/images/${locatInfo?.current.weather[0].icon}.png`}/>
+                        <img alt={locatInfo?.current.weather[0].description} style={{float: 'right'}} src={`${process.env.PUBLIC_URL}/images/${locatInfo?.current.weather[0].icon}.png`}/>
                     </Grid>
                     <Grid item xs>
                         <Typography variant="h5" align="center">{Math.round(locatInfo?.current.temp as number)}°C</Typography>
